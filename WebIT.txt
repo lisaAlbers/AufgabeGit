@@ -1,0 +1,468 @@
+Web It
+-Betriebssysteme
+-Rechnernetze und Verteile Systeme
+-Softwaretechnik und Werkzeuge
+-SW engineering tools
+-Cloud Computing
+-Web-Standards / Engineering
+
+Themen:
+1.Internet
+2.Webn -HTTP
+3.Versionskontrollen (git)
+4.Sicherheit Kryptografie
+5.Webtests
+(6.)Web-Server / Web-Browser (Web-Cache)
+7.Static Website Generatoren
+
+01.10.19 Thema: Internet
+moodle.mosbach.dhbw.de
+ON19T3 Folie zum Nachlesen
+
+
+Rechnernetze und verteilte Systeme:
+
+Rechnernetz:
+Durch Telekommunikation verbundene Rechnerknoten
+
+Telekommuniktaionssystem:
+System, das Teilnehmer Kommunikationsdienste anbietet (in der Regel selbst durch Rechnernetz implementiert)
+
+Verteiltes System:
+Anwendung, deren Komponenten sich an verschiedenen Orten befinden,
+Komponenten sind in dRechnernetz installiert, werden Lokal von der Rechnerknoten ausgeführt und kommunizieren miteinander mit Hilfe eines Telekomminunikationssystems.
+
+Besonderheiten verteilter Systeme
+Kommunikation
+-unzuverlässig, teuer, langsam
+
+
+Lose Kopplung
+-Kommunikation selten
+-Synchronisation schwach
+-Fehlertoleranz
+
+Nebenläufigkeit (Concurrency)
+-weitgehend unabhängige Fortschritte
+
+Dezentrale Kontrolle
+-weitgehende Autonomie
+-lokale Kontrolle auf Basis partieller Sichten
+-vollständige Sicht des globalen Systemzustands wird vermieden, da das zu teuer ist (Einfrieren)
+
+3 Handshake = Nachricht, Kontrolle, weiterleiten, Kontrolle
+Um Störungen zu bemerken
+Störungen sollen versteckt oder verschleiert werden, damit der Nutzer es nicht bemerkt
+
+Dienstleistende Systeme:
+Dienstnehmer Dienstnehmer Dienstnehmer
+
+
+
+
+
+                                                 Diensterbringer
+
+Unicast (2Partner)
+
+Multicast(1 sendet an mehrere)
+
+Allcast (1 sendet an alle)
+
+Paketorientierte Datenverarbeitung : große Datei in mehrere kleine Pakete
+
+Immer zwischenspeichern : dort entscheiden welche Daten zuerst
+Ankommen der Pakete in unterschiedlicher Rheinfolge
+
+Es ist immer nur ein konkretes Paket unterwegs
+
+Stau bei zu kleiner Leitung, kein Speicher mehr Pakete werden dann gelöscht
+
+
+
+Qualität:
+Wichtig die Nachrichtenlaufzeit
+Durchsatz (Bandbreite, Britta)
+Entfernung
+Zuverlässigkeit
+Kosten
+Datensicherheit
+
+Störungen:
+Verfälschung
+Phantom
+Duplikat
+Verlust
+Vertauschung
+
+Protokolle: Defintion
+ISO 7498
+
+Man weiß meist gar nicht wie die Kommunikation funktioniert.
+Schnittstelle wie diese zu bedienen ist aber nicht was dahinter steckt
+
+
+ISO/OSI-Basisreferenzmodell: Schichten
+
+ Anwendungsschicht (Application Layer) TCP,UDP
+– höchste Ebene,stellt die Kommunikationsdienstleistungen bereit, die
+direkt von einer Anwendung benötigt werden
+– Beispiel:„Übertrage das Kommandoeine Datei zu öffnen“
+
+ Darstellungsschicht (Presentation Layer) iP
+– reicht die Dienstleistungen des Session-Dienstes weiter
+– stellt Dienstleistungen bereit, mit denen sich Anwendungsprozesse über die Syntax der Nachrichten abstimmen können
+
+ Kommunikationssteuerungsschicht (Session Layer)
+– bietetDienstleistungen an, die zur Eröffnung, Durchführung und
+Beendigung einer Kommunikationsbeziehung (Session) nötig sind
+– Dienstleistungen zur Realisierung anwendungsnaher Fehlerbehandlungsmaßnahmen:
+
+ISO/OSI-Basisreferenzmodell: Schichten
+ Transportschicht (Transport Layer)
+– erweitert Endsystemverbindungen (Rechner–Rechner) zu
+Anwenderverbindungen (Anwender–Anwender)
+– Anwender = Anwendungsprozesse
+– behandeltEnde-zu-Ende-Qualitätsaspekte
+
+ Vermittlungsschicht (Network Layer)
+ – unterstützt beliebige Konnektivität im Netz
+
+ Sicherungsschicht (Data Link Layer)
+– stellt zuverlässige Links zur Verfügung
+– Flußkontrolle,Fehlererkennung und
+ -korrektur
+
+ Bitübertragungsschicht (Physical Layer)
+– stelltungesicherte Links für die Übertragung von Bitfolgen zur
+Verfügung.
+
+
+TCP und UDP verwenden Beide iP
+
+Internet ist nicht für Medien geschaffen, deshalb umständliches umwandeln
+
+Bei guten Multimedia netz keine Verzögerungen oder Wartezeiten bei Media Konsum, deshalb Bandbreite erhöht werden .
+
+Anwendungen bestehen aus zwei Teilen = Client und Server
+
+Client Bsp. Webbrowser fordert Ressourcen an
+
+Server breitet Dientleistung an, zum Beispiel die Informationen einer Webseite
+
+Request vom Client
+
+Reply vom Server
+
+Peer to Peer Paradigma
+
+Netz zwischen Agenten = kann CLient oder Server sein, ständiger Austausch
+Kein zentraler Server
+
+Bei Ausfall eines Agenten springt ein anderer ein
+
+Größerer Management aufwand
+
+Anwendungsprotokolle:
+
+Tauschen Anwendungsnachrichten (Pakete) aus.
+
+HTTP legt fest wie die Nachrichten ausgetuscht werden
+
+Man braucht eine Verbindungsorientierte Datenübertragung
+
+Bei HTTP in der Regel Nutzung von TCP
+
+Anwendungsprotokoll ist Schicht 5 baut auf Schicht 4 auf
+
+Daten werden über TCP verschickt, Empfänger muss bestätigen
+
+Empfänger sagt irgendwann er hätte alle erhalten.
+
+Wenn Empfänger nach einer bestimmten Zeit nicht bekommen, wartet der Server ab und schickt alle Pakete erneut
+
+Socket= Kommunikationsendpunkt
+
+Ist die Tür zum Netzwerk
+
+Kommunikation durch Abgabe bzw.  Abholung von Nachrichten an der Tür.
+
+Adressen werden benötigt
+
+Adressierung
+
+Adresse Mac auf Schicht 2
+
+Bsp. Wlan = Luftschnittstelle
+
+Um auseinander zu halten Mac Adresse
+
+Adresse die  den einzelnen Rechner markieren, Rechner kann auch mehrere IPAdressen haben
+
+IP Adresse markiert die Maschine
+
+Transportschicht 4 hat Portnummern
+
+HTTP Adressen sind URLs das was man in die Adresszeile des Browsers eingibt
+
+Zeigt an wo HTTP die Informationen findet
+
+IPAdresse Version 4 = 63.12.1.27 zwischen 0 - 255
+
+FQDMS sind die Namen die man eingibt , findet heraus wo der Server liegt = Domainname System
+
+Unternehmen nutz Intern IPAdresse
+
+Adressen auf Schicht 4
+
+16 bit Zahl eine Zahl zwischen
+
+Vordefinierte Portnummern
+
+Verbindungsoriertierte Kommunikation :TCP
+
+Verbindungslose Kommunikation: UDP 536 Möglichkeiten 2 hoch 16 = 16 Bit
+
+Anwendungsforderungen an Transportdienste
+
+Zuverlässigkeit beim Datentransfer
+
+-Bei Multimedia können in Grenzen Daten verloren gehen = brauchen keine gesicherte Datenübertragung
+
+Zeitverhalten
+
+wichtig bei Steuerungen
+Mache verkraften längere Verzögerungen Bsp. E-mail
+
+Bandbreite
+
+-bsp. Multimedia braucht eine mindest Bandbreite für eine bessere Qualität
+-elastische Anwendungen haben keine mindest Anforderungen, passen sich Bandbreite an
+
+Sicherheit
+
+-keine Änderungen durch dritte
+-hohe Sicherheit Bsp. E-Banking
+-Interaktion mit anderen Anwendungen
+-nutzung von von allgemeinen Daten (Fernsehen über Internet)
+
+TCP
+-verbindungsorientiert
+-zuverlässiger Transport
+-Flusskontrolle
+-Übeerlastkontrolle
+-kein Timing
+-keine garantierte Bandbreite
+
+UDP
+-nicht Verbindungsorientiert
+-unzuverlässiger Transport
+-kein Fluss-und Überlastkontrolle
+-kein Timing
+-keine garantierte Bandbreite
+
+Kommandos
+
+Ipconfig = Es zeigt die Hardwareadressen bzw. die IP-Adressen der im lokalen Netzwerk verwendeten Geräte an.
+
+Ping… Datenpaket = Ping ist ein Diagnose-Werkzeug, mit dem überprüft werden kann, ob ein bestimmter Host in einem IP-Netzwerk erreichbar ist
+
+Traceroute = Windows =Traceroute ist ein Computerprogramm, das ermittelt, über welche Router und Internet-Knoten IP-Datenpakete bis zum abgefragten Rechner gelangen.
+
+Nslookup = nslookup ist ein einfaches, aber sehr praktisches Kommandozeilentool, das in erster Linie dazu verwendet wird, die IP-Adresse zu einem bestimmten Hostname oder den Domain-Namen zu einer bestimmten IP-Adresse zu finden (Reverse DNS Lookup).
+
+WWW: World Wide Web
+
+Wichtige Eigenschaft von Protokollen = gibt es einen Speicher / Gedächtnis oder muss alles neu in Erfahrung gebracht werden
+
+Zustands Protokoll man logt sich ein alles beläuft sich auf die Sitzung kein neues Passwort, beliebig vile Ressourcen, Anfrage muss immer erst die Zustände davor abfragen, cookies aber kein cookie Management
+
+Zustandsloses Protokoll :  speichert keine Infos, robuster, keine verschiedenen Phasen, es gibt cookies gehören aber nicht zum Protokoll
+
+Request = Nachricht
+Response= Nachricht
+
+Simple Request was will ich von dem Server = url
+
+Full Request ist die Protokoll Version, welchen Regeln folgt der Server
+
+Header = Kopfdaten (Steuerungsdaten / Metadaten)
+Body= Eigentliche Nutzdaten (Datei die ich übertragen möchte)
+
+Status wie erfolgreich war die Datenanfrage
+
+Zahlen wie Bsp. 404 = Not Found
+
+Namen: Wert = Name-Wert-Farbe
+
+HTTP Operationen
+
+GET http://www.sjdjmnasndn.de
+
+Liefert Datei zurück
+
+Caching= Zwischenspeicher
+
+Cache im Browser speichert Webseiten zwischen = keine Netzwerk abfrage
+
+Proxy-Server = Stellvertreter werden anstatt des eigentlichen Servers angesprochen
+
+Transparenter Proxy muss Daten nicht aus dem Internet abfragen
+
+Mein kann entscheiden was gecached wird und was nicht
+
+Conditional Get
+
+Sendet das angeforderte Objekt nicht, wenn der Client bereits aktuelle Version des Caches hat
+
+Vorsicht: Benutzername und Passwort im Browser Cache!
+
+Autentification: Nachweis das man auch der ist den man vorgibt zu sein
+
+Autorisierung: Zugang nur für die zugewiesenen Privilegien
+
+Cookies
+
+Webbrowser merkt sich die Cookies und weiß welche Server man besucht hat
+
+Werden in den Headerzeilen verwendet, sind auf dem Rechner und in den Datenbanken
+
+Man erkennt Anfrager der Seite automatische wieder
+
+E-Mail
+
+MTA übergibt an den nächsten MTA
+
+Kein Verlust von E-mail
+
+Protokoll
+
+7-Bit ASCII Format ist zeilenweise organisiert
+
+Mail-Format
+
+Umschlag (Envelop)
+-FRom:
+-To:
+-Subject:
+
+Inhalt (Body)
+
+-Textzeile
+-Textzeile
+
+
+
+.
+
+Protokoll sehr einfach daher gut zu fälschen
+
+MIME
+
+Multimedia Dateien oder auch kodierte Dateien können nicht direkt per Mail verschickt werden
+
+
+09.10.19
+
+ 01 Kann man überhaupt unerkannt im Web unterwegs sein?  (private browsing) Clara, Jessi, Lisa
+
+
+
+Was ist private browsing?
+Beim private browsing werden automatisch die Surfinformationen gelöscht wie z.B. Passwörter, Cookies und Chronik. Hierbei ist allerdings zu beachten, dass zwar die Chronik nicht gespeichert wird, SSL- Zertifikate aber schon. 
+Außerdem ist man dennoch nicht anonym, Internetdienstanbieter, Arbeitgeber, oder Betreiber der Website können weiterhin Informationen über die von Ihnen besuchte Seite sammeln. Ihre IP-Adresse und damit ihr Standort ist ebenfalls stets abrufbar. 
+
+Achtung
+Wenn Sie das Fenster nicht richtig schließen, werden ihre Daten dennoch gespeichert, bis Sie das Fenster eben geschlossen haben.
+
+Vorteile
+Man kann bei mehreren Mail Konten angemeldet sein, ohne sich ausloggen zu müssen 
+Gemeinsame Nutzung eines Computers, ohne Angst, dass der andere die Passwörter oder den eigenen Suchverlauf nachvollziehen 
+
+VPNs erhöhen die Anonymität
+Man kann den eigenen Internetverkehr über einen anderen Computer umleiten. Dies geschieht über eine VPN-Verbindung, welche den Internetverkehr über einen schnelleren und externenn Server umleitet. Die Daten werden zusätzlich verschlüsselt. Beispiele für VPNs sind SurfShark, CyberGhost, ProxyServer, TOR. Ein Großteil der VPN-Dienste bietet eine kostenlose Testphase an.
+
+TOR-Browser
+Der TOR-Browser baut alle zehn Minuten eine neue Verbindung zum Tor-Netzwerk auf, sodass sich Ihre öffentliche IP-Adresse permanent ändert.
+Um Anonymität zu gewährleisten, werden die Datenpakete über drei zufällig ausgewählte Tor-Server versandt. Der erste Server leitet die Daten weiter an den zweiten, von dort gehen sie an den dritten Knoten. Dieser wird auch als Exit-Server bezeichnet und stellt die Verbindung zu dem gewählten Webserver her.
+Tor hat jedoch auch Schwachstellen. Wenn es einem Angreifer gelingt, sich als vertrauenswürdiger Tor-Server in das Netzwerk einzuklinken, kann er alle Daten abgreifen, die über ihn als Exit-Knoten laufen. Denn die Verbindung zwischen dem dritten Tor-Server und der angesteuerten Webadresse ist unverschlüsselt.
+Fazit
+Es ist teilweise möglich, allerdings nicht im private browsing. Hier werden zwar Surfinformationen nicht gespeichert, man ist aber dennoch nicht anonym. Um wirklich eine hohe Anonymität zu erlangen, braucht es einiges an Wissen und Können. Allerdings sind selbst VPN und Tor-Browser nicht 100% anonym.
+
+Quellen 
+https://support.mozilla.org/de/kb/privater-modus
+
+https://www.pcwelt.de/ratgeber/Ratgeber-Internet-Die-Grenzen-der-Anonymitaet-1907092.html
+
+https://de.norton.com/internetsecurity-privacy-your-private-browser-is-not-so-private-after-all.html
+
+https://vpnoverview.com/de/privatsphaere/anonym-surfen/wie-anonym-private-browsing-inkognito-modus/
+
+https://intelligente-welt.de/darknet-und-tor-wie-anonym-sind-sie-wirklich/
+
+https://www.chip.de/news/Privatmodus-In-keinem-Browser-wirklich-anonym_108995568.html
+
+https://www.globalsign.com/de-de/ssl-information-center/was-ist-ein-ssl-zertifikat/
+
+04.11.19
+
+Werkzeugunterstützung bei der Softwareentwicklung
+
+SDLC
+Software System Development
+Requirment Analysis
+Design -> Welche Screens, Benutzungsschritte, wie sehen die Daten aus
+Implementation
+Testing
+Evolution
+
+-Anforderungsmanagement
+-Konzeptions-/ Design-/ Entwurfsunterstützung
+-Programmierung (IDEs)
+-Manuelle und automatisierte Tests
+-Automatische Prüfung
+-Versionsmanagement
+-Buildmanagement
+-Manuelle und automatisierte Inbetriel
+-Betriebsüberwachung
+-Dokumentationsunterstützung
+-Unterstützung von Kooperation und Kommunikation
+
+Herausforderungen beim Umgang mit Dateien
+-Welche Dateien gehören alle zu dieser Produktversion
+-Habe ich/ hat jemand eine neue Fassung dieser Datei?
+-Wie kann ich noch ältere Fassungen zu rate ziehen?
+-Wie kann ich versehentlich / falsche Änderungen ungeschehen machen?
+-Wo ist das letze Backup
+-Wie verteile ich Dateien?
+-Wie bringe ich Änderungen an diesen Dateien wieder in eine gemeinsame Fassung?
+
+Lösung Versionsmanagement / Versionskontrolle
+-Änderungen in einer Datei
+-Zusammenhängende Änderungen an Dateien sind leicht zu indentifierzieren
+-Alle Dateien stehen bei Bedarf zur Verfügung
+-Können verglichen werden
+-Fragen zur Bearbeitung und zu Ständen können leicht beantwortet werden
+-Gelöschte oder Verloren Dateien können problemlos rekonstruiert werden
+-Änderungen / Ergänzungen können einfach im Team ausgetauscht werden
+-Mehrere Branches können unabhängig von einander vorangetrieben werden
+
+Realisierungsmöglichkeit für das Versionsmanagement
+-Lokal (ehemals SCCS, RCS)
+-Zentral (z.B. CVS, Subversion)
+Gemeinsamer Server
+Clients ziehen den letzen Stand
+
+-verteilt (distributed)
+-Clients verfügen über vollständige Kopie
+-jeder Client hat einen lokalen Repository
+-z.B. Backup -> robuster gegenüber Störungen
+-Clients können bei remote bei verschiedenen Servern beziehen
+
+Git-Konzept
+-Standard Werkzeug in der Softwareentwicklung
+-Eigenschaften:
+Einfach zu nutzen
+Sehr schnell
+Sehr effizient auch in großen Projekten
+Sehr gute Unterstützung für Handhabung von Entwicklungszweigen (Branches)
